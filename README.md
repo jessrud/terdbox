@@ -1,7 +1,7 @@
 # Terdbox
 
 A degenerate fork of termbox. The most notable difference in the API is that 
-support for mouse and the mod1 (ALT) modifiers is abscent, and so there is only 
+support for mouse and the mod1 (ALT) modifiers is absent, and so there is only 
 one input mode.
 
 ### Why? 
