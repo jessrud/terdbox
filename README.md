@@ -29,7 +29,7 @@ tb_blit() // drawing functions
 tb_peek_event() // peek a keyboard event
 tb_poll_event() // wait for a keyboard event
 ```
-See src/termbox.h header file for full detail.
+See src/terdbox.h header file for full detail.
 
 ## TL;DR
 `make` to build a static version of the lib under lib/libterdbox.a
