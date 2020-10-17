@@ -11,6 +11,7 @@ LIBD=lib
 SRCD=src
 OBJD=obj
 INCL=-I$(SRCD)
+PREFIX=/usr/local
 
 SRCS=$(SRCD)/terdbox.c
 SRCS+=$(SRCD)/input.c
@@ -21,20 +22,28 @@ SRCS+=$(SRCD)/utf8.c
 
 OBJS:=$(patsubst $(SRCD)/%.c,$(OBJD)/$(SRCD)/%.o,$(SRCS))
 
-.PHONY:all
-all:$(LIBD)/lib$(NAME).a
+.PHONY: all clean install uninstall
+	
+all: $(LIBD)/lib$(NAME).a
 
-$(OBJD)/%.o:%.c
-	@echo "building source object $@"
-	@mkdir -p $(@D)
-	@$(CC) $(INCL) $(FLAGS) -c -o $@ $<
+$(OBJD)/%.o: %.c
+	mkdir -p $(@D)
+	$(CC) $(INCL) $(FLAGS) -c -o $@ $<
 
-$(LIBD)/lib$(NAME).a:$(OBJS)
-	@echo "compiling $@"
-	@mkdir -p $(LIBD)
-	@ar rvs $(LIBD)/lib$(NAME).a $(OBJS)
+$(LIBD)/lib$(NAME).a: $(OBJS)
+	mkdir -p $(LIBD)
+	ar rvs $(LIBD)/lib$(NAME).a $(OBJS)
+
+install: $(LIBD)/lib$(NAME).a
+	install $(LIBD)/lib$(NAME).a $(PREFIX)/lib
+	install $(SRCD)/$(NAME).h $(PREFIX)/include
+
+uninstall:
+	rm -f $(PREFIX)/lib/lib$(NAME).a
+	rm -f $(PREFIX)/include/$(NAME).h
+
 
 clean:
-	@echo "cleaning workspace"
-	@rm -rf $(LIBD)
-	@rm -rf $(OBJD)
+	rm -rf $(LIBD)
+	rm -rf $(OBJD)
+
