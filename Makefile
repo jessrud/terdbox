@@ -35,8 +35,8 @@ $(LIBD)/lib$(NAME).a: $(OBJS)
 	ar rvs $(LIBD)/lib$(NAME).a $(OBJS)
 
 install: $(LIBD)/lib$(NAME).a
-	install $(LIBD)/lib$(NAME).a $(PREFIX)/lib
-	install $(SRCD)/$(NAME).h $(PREFIX)/include
+	install -m a+r,u+w $(LIBD)/lib$(NAME).a $(PREFIX)/lib
+	install -m a+r,u+w $(SRCD)/$(NAME).h $(PREFIX)/include
 
 uninstall:
 	rm -f $(PREFIX)/lib/lib$(NAME).a
