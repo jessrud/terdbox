@@ -32,4 +32,7 @@ tb_poll_event() // wait for a keyboard event
 See src/terdbox.h header file for full detail.
 
 ## TL;DR
+
 `make` to build a static version of the lib under lib/libterdbox.a
+
+`make install` with sufficient privileges to install header and library in `$PREFIX`
